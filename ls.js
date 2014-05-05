@@ -7,7 +7,7 @@ fs.readdir(process.argv[2],
 			throw err;	
 		}
 		for(var i=0; i<list.length; i++){
-			if(path.extname(list[i]) == process.argv[3]){
+			if(path.extname(list[i]).substring(1) == process.argv[3]){
 				console.log(list[i]);
 			}
 		}		
