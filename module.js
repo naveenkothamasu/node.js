@@ -1,19 +1,19 @@
 var fs = require('fs');
 var path = require('path');
 
-function list(mypath, ext){ 
+module.exports = function(mypath, ext, callback){ 
 	fs.readdir(mypath, 
 		function(err, list){
+			var data = [];
 			if(err){
-				throw err;
+				return callback(err);
 			}
-			for(var i=0; i < list.length; i++){
+			for(var i=0, j=0; i < list.length; i++){
 				if(path.extname(list[i]) == "."+ext){
-					console.log(list[i]);
+					data[j++] = list[i];
 				}
 			}
+			callback(null, data);
 		}
 	);
 };
-
-exports.list = list;
